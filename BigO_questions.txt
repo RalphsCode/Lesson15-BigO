@@ -1,0 +1,103 @@
+ STEP ONE: Simplifying Expressions
+
+ O(n + 10) to O(n)
+ In Big O notation, we generally ignore constant terms because they eventually become insignificant as the input size (n) grows larger. This simplifies the expression O(n + 10) to O(n).
+ 
+ 
+The Big O expression O(100 * n) can be simplified to O(n) for basically the same reason as above.
+
+The Big O expression O(25) can be simplified to O(1) for basically the same reason as above.
+
+The Big O expression O(n^2 + n^3) can be simplified by identifying the dominant term, which describes the worst-case growth rate as the input size n increases. Thus the expression can be simplified to: O(n^3).
+
+O(n + n + n + n) simplifies to O(n) as all the terms are identical (O(n)), so simplifying involves recognizing this and keeping one representative term:
+
+O(1000 * log(n) + n) - In this case, the dominant term is the one that grows faster as n increases. Both log(n) and n grow, but n grows faster because its exponent is 1, while log(n) has an exponent less than 1.
+Since constant factors like 1000 don't significantly affect the rate of growth compared to n, we can ignore them in Big O notation.
+Therefore, the simplified Big O expression is O(n).
+
+O(1000 * n * log(n) + n)
+In Big O notation, constant terms (like 1000 in this case) do not affect the asymptotic growth rate. They only represent a fixed amount of additional work, which becomes insignificant for large values of n. Therefore, we can discard the 1000 entirely.
+Since both remaining terms contain n, we can combine them using simple addition: O(n * log(n) + n).
+When analyzing Big O expressions, we focus on the term that grows the fastest as n increases. In this case, both n and n * log(n) grow slower than any exponential or polynomial term. However, n * log(n) grows slightly faster than just n due to the logarithmic factor. Therefore, the dominant term is n * log(n).
+Therefore, the simplified Expression: O(n * log(n))
+
+The simplified Big O expression for O(2^n + n^2) is O(2^n). In this case, 2^n grows much faster than n^2 as n increases, so it is dominant.
+
+The simplified Big O expression for O(5 + 3 + 1) is O(1).
+
+The simplified Big O expression of O(n + n^(1/2) + n^2 + n * log(n)^10) is O(n^2). This means the worst-case execution time of the algorithm grows proportionally to the square of the input size n.
+This analysis shows that the most significant factor impacting the algorithm's efficiency is the term with the highest power of n as input size grows infinitely.
+
+ STEP 2 - Time Complexities.
+
+function logUpTo(n) {
+  for (let i = 1; i <= n; i++) {
+    console.log(i);  } }
+The time complexity of the code is O(n). 
+This is because the for loop iterates from 1 to n, and the body of the loop contains a constant number of operations. Therefore, the total number of operations executed by the code grows linearly with n.
+
+function logAtLeast10(n) {
+  for (let i = 1; i <= Math.max(n, 10); i++) {
+    console.log(i);   } }
+The Big O time complexity of the code is O(n).
+This is because the dominant operation in the code is the loop that iterates from 1 to Math.max(n, 10). The number of times this loop iterates is directly proportional to the input n, so the time complexity of the code is also proportional to n.
+
+function logAtMost10(n) {
+  for (let i = 1; i <= Math.min(n, 10); i++) {
+    console.log(i);   }}
+The time complexity of the code is O(1).
+This is because the number of iterations of the loop is bounded by a constant (10), regardless of the input size n. Even though the loop iterates up to min(n, 10), this value is always less than or equal to 10. Therefore, the overall runtime of the function is independent of the input size, making it constant time.
+
+The time complexity of the code is O(n), where n is the length of the input array.
+
+function onlyElementsAtEvenIndex(array) {
+  let newArray = [];
+  for (let i = 0; i < array.length; i++) {
+    if (i % 2 === 0) {
+      newArray.push(array[i]);     }  }
+  return newArray;}
+This is because the dominant operation in the code is the for loop, which iterates over the input array once. In each iteration, the code checks if the current index is even and, if so, adds the element at that index to a new array. The number of iterations of the loop is directly proportional to the length of the input array, so the time complexity of the code is O(n).
+
+function subtotals(array) {
+  let subtotalArray = [];
+  for (let i = 0; i < array.length; i++) {
+    let subtotal = 0;
+    for (let j = 0; j <= i; j++) {
+      subtotal += array[j];     }
+    subtotalArray.push(subtotal);   }
+  return subtotalArray; }
+
+The time complexity of the code is O(n^2).
+This is because the outer loop iterates over the entire array once, and the inner loop iterates up to i times, where i is the current index in the outer loop. Therefore, the total number of iterations is n * (1 + 2 + ... + n), which is approximately equal to n^2.
+
+function vowelCount(str) {
+  let vowelCount = {};
+  const vowels = "aeiouAEIOU";
+
+  for (let char of str) {
+    if(vowels.includes(char)) {
+      if(char in vowelCount) {
+        vowelCount[char] += 1;
+      } else {
+        vowelCount[char] = 1;       }    }  }
+  return vowelCount;}
+
+ The time complexity of the code is O(n), where n is the length of the input string. This is because the main loop iterates over each character in the string, and the lookups in the vowels set and the vowelCount dictionary are both constant-time operations.
+ 
+ PART 3 - SHORT ANSWERS
+ 1. True or false: n^2 + n is O(n^2). TRUE
+2. True or false: n^2 * n is O(n^3).  TRUE
+3. True or false: n^2 + n is O(n).   FALSE
+4. What’s the time complexity of the .indexOf array method? Results in a linear time complexity (O(n)). This means the operation takes longer as the array size (n) increases.
+5. What’s the time complexity of the .includes array method? It is generally considered O(n) (linear time), where n is the length of the array. This means that the execution time of the method grows proportionally to the number of elements in the array.
+6. What’s the time complexity of the .forEach array method? It is O(n), where n is the length of the array. This means that the time it takes for the method to execute grows linearly with the size of the array.
+7. What’s the time complexity of the .sort array method?  It has an average time complexity of O(n log n).
+8. What’s the time complexity of the .unshift array method? It results in a time complexity of O(n). This means the time it takes to insert an element using .unshift grows proportionally to the number of elements already present in the array.
+9. What’s the time complexity of the .push array method? It is typically constant (O(1)), meaning the time it takes to add an element to the end of an array remains consistent regardless of the array's size.
+10. What’s the time complexity of the .splice array method? Somewhere between O(1) and O(n), depending on the number of elements deleted and added, their position, and the overall size of the array.
+11. What’s the time complexity of the .pop array method? Somewhere between O(1) and O(n), depending on the location of the element deleted and added, and the overall size of the array.
+12. What’s the time complexity of the Object.keys() function? In most cases, the time complexity of Object.keys() is either O(n) or O(n log n).
+
+ BONUS:
+13. What’s the space complexity of the Object.keys() function? In most cases, the space complexity of Object.keys() is O(n), but it can potentially be influenced by additional factors depending on the specific engine and internal data structures used.
